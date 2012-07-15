@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sensors</string>
+    <string name="main_no_items">No sensors</string>
+    <string name="settings_capture">Capture</string>
+    <string name="settings_rate">Sampling rate:</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_login">Log in Yeelink</string>
+    <string name="textview_sampling">Sampling</string>
+    <string name="login_wait">Please stand by</string>
+    <string name="unknown_sensor">Unknown</string>
+</resources>
