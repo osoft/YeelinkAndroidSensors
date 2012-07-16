@@ -1,24 +1,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.zalio.android.yl.sensors"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <application android:label="@string/app_name"
+    <application
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme">
-        <activity android:name="Sensors" android:launchMode="singleInstance">
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="Sensors"
+            android:launchMode="singleInstance" >
+        </activity>
+        <activity android:name="SensorMonitor" >
+        </activity>
+        <activity android:name="SensorSettings" >
+        </activity>
+
+        <service android:name="SamplingService" >
+        </service>
+
+        <activity android:name="LoginActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="SensorMonitor"></activity>
-        <activity android:name="SensorSettings"></activity>
-        <service android:name="SamplingService"></service>
-
     </application>
+
 </manifest>

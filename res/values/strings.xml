@@ -9,4 +9,10 @@
     <string name="textview_sampling">Sampling</string>
     <string name="login_wait">Please stand by</string>
     <string name="unknown_sensor">Unknown</string>
+    <string name="login_name">Username</string>
+    <string name="login_passwd">Password</string>
+    <string name="login_name_hint">Input Yeelink username here</string>
+    <string name="login_passwd_hint">Type your password here</string>
+    <string name="login_savepasswd">Store password?</string>
+    <string name="login_login">Sign in Yeelink</string>
 </resources>

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">关屏传感器</string>
+    <string name="app_name">Yeelink安卓传感器</string>
     <string name="main_no_items">没有可识别的传感器</string>
     <string name="settings_capture">捕获数据</string>
-    <string name="settings_rate">采样率:</string>
+    <string name="settings_rate">采样速率:</string>
     <string name="menu_settings">设置</string>
     <string name="menu_login">登录Yeelink</string>
     <string name="textview_sampling">采样中</string>
     <string name="login_wait">请稍候&#8230;</string>
     <string name="unknown_sensor">无法获取传感器名称</string>
+    <string name="login_name">Yeelink用户名</string>
+    <string name="login_name_hint">请输入Yeelink用户名</string>
+    <string name="login_passwd">密码</string>
+    <string name="login_passwd_hint">点击这里输入密码</string>
+    <string name="login_savepasswd">保存密码?</string>
+    <string name="login_login">登陆Yeelink</string>
 </resources>

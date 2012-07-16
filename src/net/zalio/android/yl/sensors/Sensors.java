@@ -171,7 +171,7 @@ public class Sensors extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
 		menu.add(0, MENU_SETTINGS, 1, R.string.menu_settings);
-		menu.add(0, MENU_LOGIN, 1, R.string.menu_login);
+		//menu.add(0, MENU_LOGIN, 1, R.string.menu_login);
 		return result;
 	}
 
@@ -179,8 +179,8 @@ public class Sensors extends ListActivity {
 		int id = item.getItemId();
 		switch (id) {
 		case MENU_LOGIN:
-			final String username = "henry";
-			final String password = "killer01";
+			final String username = "";
+			final String password = "";
 			Log.w(LOG_TAG, "____username = " + username);
 			Log.w(LOG_TAG, "____password = " + password);
 
