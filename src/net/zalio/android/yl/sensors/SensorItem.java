@@ -8,9 +8,21 @@ class SensorItem {
         this.sampling = false;
         this.type = sensor.getType();
     }
+    
+    SensorItem( String name, int type){
+    	this.sensorName = name;
+    	this.type = type;
+    	this.sampling = false;
+    }
 
     public String getSensorName() {
-        return sensor.getName();
+    	if(sensor == null) {
+    		return sensorName;
+    	}
+    	else {
+    		return sensor.getName();    		
+    	}
+    	
     }
 
     Sensor getSensor() {
@@ -35,6 +47,7 @@ class SensorItem {
 
 
 
+	private String sensorName;
 	private Sensor sensor;
     private boolean sampling;
     private int type;

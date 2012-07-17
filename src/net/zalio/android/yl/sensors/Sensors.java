@@ -81,12 +81,15 @@ public class Sensors extends ListActivity {
 					+ samplingServiceRunning);
 		}
 		setContentView(R.layout.main);
+		
+		// Construct sensor list
 		SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		ArrayList<SensorItem> items = new ArrayList<SensorItem>();
 		List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
 		for (int i = 0; i < sensors.size(); ++i) {
 			items.add(new SensorItem(sensors.get(i)));
 		}
+		items.add(new SensorItem("GPS", 0xffff));
 		if (samplingServiceRunning) {
 			SensorItem item = items.get(samplingServicePosition);
 			item.setSampling(true);
@@ -110,6 +113,8 @@ public class Sensors extends ListActivity {
 				}
 			}
 		}
+		
+		// Fill listview
 		ListView lv = getListView();
 		listAdapter = new SensorListAdapter(this, items);
 		lv.setAdapter(listAdapter);
@@ -226,10 +231,12 @@ public class Sensors extends ListActivity {
 	}
 
 	private void startSamplingService(int position) {
+		Log.i(LOG_TAG, "startSamplingService()");
 		stopSamplingService();
 		SensorItem item = (SensorItem) listAdapter.getItem(position);
 		Sensor sensor = item.getSensor();
-		String sensorName = sensor.getName();
+		//String sensorName = sensor.getName();
+		String sensorName = item.getSensorName();
 		Intent i = new Intent();
 		i.setClassName("net.zalio.android.yl.sensors",
 				"net.zalio.android.yl.sensors.SamplingService");
@@ -247,6 +254,7 @@ public class Sensors extends ListActivity {
 	}
 
 	private void stopSamplingService() {
+		Log.i(LOG_TAG, "stopSamplingService()");
 		if (samplingServiceRunning) {
 			Intent i = new Intent();
 			i.setClassName("net.zalio.android.yl.sensors",

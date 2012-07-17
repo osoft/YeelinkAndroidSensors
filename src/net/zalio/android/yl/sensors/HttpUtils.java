@@ -462,6 +462,61 @@ public final class HttpUtils {
     	return true;
     }
     
+    /**
+     * Set sensor (type = 5) status
+     * 
+     * @param deviceId
+     * @param sensorId
+     * @param on
+     * @return true: success, false: fail
+     */
+    public static boolean setLocationData(final int deviceId, final int sensorId, float value[]) {
+    	
+    	// http://www.yeelink.net/v1.0/device/3/sensor/5/datapoints
+    	
+    	HttpRequest req = null;
+    	
+    	HttpClient client = new DefaultHttpClient();
+    	final String urlStr = String.format("http://www.yeelink.net/v1.0/device/%d/sensor/%d/datapoints", deviceId, sensorId);
+    	Yllocation yl = new Yllocation();
+    	yl.value.lat = value[0];
+    	yl.value.lng = value[1];
+    	yl.value.speed = value[2];
+    	Gson gson = new Gson();
+    	String entitybody = gson.toJson(yl);
+    	Log.i(TAG, "body: " + entitybody);
+        try {
+        	HttpHost target = new HttpHost("www.yeelink.net");
+        	HttpPost post = new HttpPost(urlStr);
+        	ByteArrayEntity entity = new ByteArrayEntity(entitybody.getBytes());
+        	post.setEntity(entity);
+        	
+        	req = post;
+            req.addHeader("U-ApiKey", GlobalVars.ApiKey);
+            
+        	HttpResponse httpResponse = client.execute(target, req);
+    		
+			//
+    		int statusCode = httpResponse.getStatusLine().getStatusCode();
+    		Log.w(TAG, "setSensorData() status code = " + statusCode);
+			if (statusCode != 200) {
+				return false;
+			}
+			
+			//String strResult = EntityUtils.toString(httpResponse.getEntity());
+			//Log.w(TAG, "______setSensorStatus() response = " + strResult);
+			
+			// response parse with json
+			//JSONObject jo = new JSONObject(strResult);
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    		return false;
+    	}
+    	
+    	return true;
+    }
+      
     
     /**
      * Create a device on Yeelink Server
@@ -535,6 +590,16 @@ public final class HttpUtils {
     	
     	public unit unit = new unit();
     	public range range = new range();
+    }
+    
+    static class Yllocation{
+    	public static class LocationValue{
+    		float lat;
+    		float lng;
+    		float speed;
+    	}
+    	
+    	LocationValue value = new LocationValue();
     }
     
     /**

@@ -106,8 +106,14 @@ public class YeelinkReport {
 						
 						if(latestSensorID != 0){
 							Log.i(TAG, "Sending data to Yeelink");
-							HttpUtils.setSensorData(
-									GlobalVars.DeviceID, latestSensorID, latestData[sp.dataPick]);
+							if(latestSensorType != 0xffff) {
+								HttpUtils.setSensorData(
+										GlobalVars.DeviceID, latestSensorID, latestData[sp.dataPick]);
+							}
+							else {
+								HttpUtils.setLocationData(
+										GlobalVars.DeviceID, latestSensorID, latestData);
+							}
 						}
 						else{
 							Log.e(TAG, "Unable to create such sensor on yeelink");
@@ -168,6 +174,11 @@ public class YeelinkReport {
 			String humidityTags[] = {"android", "humidity"};
 			typeMap.put(android.hardware.Sensor.TYPE_RELATIVE_HUMIDITY,
 					new SensorProperties("RELATIVE HUMIDITY", humidityTags, "Percent", "*100%", 0.00f, 1.00f, 0));
+			
+			String locationTags[] = {"android", "location"};
+			typeMap.put(0xffff,
+					new SensorProperties("GPS", locationTags, "Percent", "*100%", 0.00f, 1.00f, 3));
+			
 		}
 		
 		datatypeHashMapInited = true;
